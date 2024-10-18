@@ -23,15 +23,19 @@ class TagRenderer
     ) {
     }
 
-    public function createViteClientScript(string $src): Tag
+    public function createViteClientScript(string $src, array $options): Tag
     {
-        return $this->createInternalScriptTag(
-            [
-                'type' => 'module',
-                'src' => $src,
-                'crossorigin' => true,
-            ]
-        );
+        $attributes = [
+            'type' => 'module',
+            'src' => $src,
+            'crossorigin' => true,
+        ];
+
+        if (array_key_exists('attr', $options) && !empty($options['attr'])) {
+            $attributes = array_merge($attributes, $options['attr']);
+        }
+
+        return $this->createInternalScriptTag($attributes);
     }
 
     public function createReactRefreshScript(string $devServerUrl): Tag

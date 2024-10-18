@@ -170,6 +170,12 @@ class TagRendererTest extends TestCase
             $tagRenderer->generateTag($tag)
         );
 
+        $tag = $tagRenderer->createViteClientScript('http://127.0.0.1:5173/build/@vite/client', [ 'attr' => [ 'nonce' => 'foobar']]);
+        $this->assertEquals(
+            '<script type="module" src="http://127.0.0.1:5173/build/@vite/client" crossorigin nonce="foobar"></script>',
+            $tagRenderer->generateTag($tag)
+        );
+
         $tag = $tagRenderer->createReactRefreshScript('http://127.0.0.1:5173');
         $this->assertEquals(
             file_get_contents(__DIR__.'/../fixtures/react-refresh.html'),

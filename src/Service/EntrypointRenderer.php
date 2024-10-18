@@ -133,7 +133,7 @@ class EntrypointRenderer implements ResetInterface
         if (!is_null($viteServer)) {
             // vite server is active
             if (!isset($this->returnedViteClients[$configName])) {
-                $tags[] = $tagRenderer->createViteClientScript($viteServer.$base.'@vite/client');
+                $tags[] = $tagRenderer->createViteClientScript($viteServer.$base.'@vite/client', $options);
 
                 $this->returnedViteClients[$configName] = true;
             }
